@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Privacy & Terms - Community{% endblock %}
+
+{% block content %}
+<section class="privacy-terms-page py-12 bg-gray-50">
+    <div class="container mx-auto px-4">
+        <h1 class="text-3xl font-bold text-center mb-6">Privacy & Terms</h1>
+        <div class="max-w-3xl mx-auto">
+            <h2 class="text-xl font-semibold mt-6">Privacy Policy</h2>
+            <p class="text-lg leading-relaxed mt-2">
+                We respect your privacy and are committed to protecting your personal information. This Privacy Policy outlines our practices for collecting, using, and safeguarding your data.
+            </p>
+
+            <h2 class="text-xl font-semibold mt-6">Terms of Service</h2>
+            <p class="text-lg leading-relaxed mt-2">
+                By using our services, you agree to comply with our terms. These terms outline your rights and responsibilities when engaging with our platform.
+            </p>
+
+            <p class="text-lg leading-relaxed mt-4">
+                If you have any questions or concerns, please feel free to <a href="{% url 'contact' %}" class="text-blue-600 underline">contact us</a>.
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

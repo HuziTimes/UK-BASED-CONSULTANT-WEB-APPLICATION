@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Review Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #1c1c1c;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .email-header {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        .email-header h1 {
+            color: #ffffff;
+            font-size: 24px;
+            margin: 0;
+        }
+        .email-body {
+            padding: 20px;
+            background-color: #2b2b2b;
+            border-radius: 8px;
+            color: #ffffff;
+        }
+        .email-body p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #ffffff;
+        }
+        .status {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .status-verified {
+            color: #4CAF50;  /* Green for verified */
+        }
+        .status-refused {
+            color: #F44336;  /* Red for refused */
+        }
+        .email-footer {
+            text-align: center;
+            padding-top: 20px;
+        }
+        .email-footer p {
+            font-size: 14px;
+            color: #7f7f7f;
+        }
+        .btn {
+            background-color: #3577F1; /* Blue button */
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>Account Review Status</h1>
+        </div>
+        <div class="email-body">
+            <p>Hello <span class="highlight">{{ user_name }}</span>,</p>
+            {% if status == 'verified' %}
+                <p>Congratulations! Your account has been <span class="status status-verified">Verified</span>.</p>
+                <p>You can now log in and start using our platform. Welcome aboard!</p>
+                <p><a href="{{ login_url }}" class="btn" style="color: white;">Log In</a></p>
+            {% elif status == 'refused' %}
+                <p>We regret to inform you that your account has been <span class="status status-refused">Refused</span> after our review process.</p>
+                <p>If you believe this is an error or have any questions, feel free to <a href="info@edugrowconsulting.co.uk">contact our support team</a>.</p>
+            {% endif %}
+        </div>
+        <div class="email-footer">
+            <p>&copy; {{ current_year }} Your Company. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

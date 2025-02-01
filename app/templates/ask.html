@@ -1,0 +1,132 @@
+{% extends 'components/base.html' %}
+
+{% block title %}Home - EDU Grow Consultant{% endblock %}
+
+{% block content %}
+    {% load static %}
+
+    <main class="cxgft">
+
+        <section>
+            <div class="cbv9p c0xm3 cffqt cwd8x">
+                <div class="cxeoc cvf0z">
+
+                    <div class="ctxr2 crdo7 cj9x5 c39hn">
+
+                        <!-- Page content -->
+                        <div class="cqmr5 cqn89 cf8g7 crett">
+                            <div class="cn0gg cxolx">
+
+                                <div class="c84kl clzjs c12xj cw9ka civup cyjnb">
+
+                                    <!-- Upvotes button -->
+                                    <div class="czcmj">
+                                        <button class="c7aqr cfop7 c84kl cyszb ch7x1 clzjs cyv0x cog1w cbsef c2h7h cv8nv cb3vt cjl5d czhaz c19hn ckv00 ca2yl cv0f2 cix92 cas64 c15ll">
+                                            <svg class="cv0nq cwqbk cy4m7" width="11" height="7"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1.664 6.747.336 5.253 5.5.662l5.164 4.591-1.328 1.494L5.5 3.338z"></path>
+                                            </svg>
+                                            <span class="crs6u ci5c0 cwvxj">2</span>
+                                        </button>
+                                    </div>
+
+                                    <!-- Content -->
+                                    <div>
+
+                                        <article class="cntrh">
+
+                                            <!-- Post header -->
+                                            <header class="c9n6n">
+                                                <h1 class="chc94 chkqi cv5ei cs22w">Ask A Question</h1>
+                                                <p class="cpb42 c5jcw ciylz">
+                                                    Have questions about studying in the UK? Our community of moderators
+                                                    and international students is here to support you. Ask anything and
+                                                    get advice tailored to your needs.
+                                                </p>
+                                            </header>
+                                        </article>
+
+                                        <!-- Comment form -->
+                                        <form class="chkqi" action="{% url 'ask' %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="c0be6 c894v">
+                                                <label for="comment-short" class="block text-sm font-medium text-white">Quick
+                                                    Title</label>
+                                                <input type="text" name="title" id="comment-short"
+                                                       class="c75mk c894v c8ebi" placeholder="Ask something…" required>
+                                            </div>
+                                            <div class="c0be6 c894v">
+                                                <label for="comment-long" class="block text-sm font-medium text-white">Detailed
+                                                    Question</label>
+                                                <textarea name="message" id="comment-long" rows="7"
+                                                          class="c75mk c894v c8ebi"
+                                                          placeholder="Provide more details about your question…"
+                                                          required></textarea>
+                                            </div>
+                                            <div class="flex justify-center md:justify-end">
+                                                <button class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl"
+                                                        type="submit">
+                                                    Post Question
+                                                </button>
+                                            </div>
+                                        </form>
+
+                                        <!-- Feature Cards -->
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 bg-gray-900">
+
+                                            <!-- Card 1 - Registration -->
+                                            <div class="bg-gray-800 shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                                                <div class="relative">
+                                                    <img class="w-full h-32 object-cover opacity-80"
+                                                         src="{% static 'registration.jpg' %}"
+                                                         alt="Registration">
+                                                </div>
+                                                <div class="p-6">
+                                                    <h3 class="text-xl font-semibold text-white mb-2">User
+                                                        Registration</h3>
+                                                    <p class="text-gray-400 mb-4">
+                                                        Sign up easily by providing personal details such as your name,
+                                                        university, and course. Verify your UK status and start enjoying
+                                                        all the features our platform has to offer.
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <!-- Card 2 - Membership -->
+                                            <div class="bg-gray-800 shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                                                <div class="relative">
+                                                    <img class="w-full h-32 object-cover opacity-80"
+                                                         src="{% static 'membership.jpg' %}"
+                                                         alt="Membership">
+                                                </div>
+                                                <div class="p-6">
+                                                    <h3 class="text-xl font-semibold text-white mb-2">Membership</h3>
+                                                    <p class="text-gray-400 mb-4">
+                                                        Become a member by making a small donation starting from just
+                                                        £1. Get exclusive benefits, including booking consultations and
+                                                        gaining deeper insights into UK education.
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Sidebar -->
+                        {% include 'components/side_bar.html' %}
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+{% endblock %}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <title>Community HTML Demo - Sign Up</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .background-image {
+            background-image: url("{% static 'svgexport-1.svg' %}");
+            background-size: cover;
+            background-position: center;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .blur {
+            filter: blur(4px);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="cryww cs22w cyksu cfglz chz9p">
+{% include 'components/message.html' %}
+
+<div class="background-image"></div>
+
+<!-- Page wrapper -->
+<div class="ciknu c4xpn crvnt clzjs c84kl">
+    <!-- Site header -->
+    <header class="c9epx c894v cdcpd">
+        <div class="c0xm3 cwd8x cbv9p cffqt">
+            <div class="cphtx cyv0x cr9oa c84kl cosre">
+                <!-- Site branding -->
+                <div class="czcmj c08ca">
+                    <!-- Logo -->
+                    <a class="group cpe5q" href="{% url 'index' %}" aria-label="Community">
+                        <img src="{% static 'logo.svg' %}" width="50" height="50" alt="Community">
+                    </a>
+                </div>
+                <nav class="c84kl cxgft">
+                    <div class="cyv0x c2ll7 cb2wz c84kl cxgft">
+                        <div class="cc30m ctkuh">
+                            Already a member? <a class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl" href="{% url 'login' %}">Sign
+                            In</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="cxgft">
+        <section class="ccmpi">
+            <div class="c0xm3 ccmpi cwd8x cbv9p cffqt">
+                <div class="crett ckxfr cqmr5 cd3md">
+                    <!-- Page header -->
+                    <div class="ca2yl cfeqe cbv9p">
+                        <h1 class="cv8nv crm28 cdp3t cm97t c7ur1 cv5ei cjniy cqmr5 chc94">Join the Community</h1>
+                    </div>
+                    <!-- Form -->
+                    <div class="cg2hf cbv9p {% if not is_uk_user and not is_pk_user %}blur{% endif %}">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                {% for field in form %}
+                                    <div>
+                                        <!-- Label -->
+                                        <label for="{{ field.id_for_label }}"
+                                               class="block text-sm font-medium text-gray-700">
+                                            {{ field.label }}
+                                            {% if field.field.required %}
+                                                <span class="text-red-500">*</span>
+                                            {% endif %}
+                                        </label>
+                                        <!-- Input -->
+                                        {{ field }}
+                                        <!-- Errors -->
+                                        {% if field.errors %}
+                                            <div class="error text-red-500">{{ field.errors }}</div>
+                                        {% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="mt-4">
+                                <button type="submit" class="w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl" {% if not is_uk_user and not is_pk_user %}disabled{% endif %}>
+                                    Sign Up
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- Main modal -->
+<div id="default-modal" tabindex="-1" aria-hidden="true"
+     class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-2xl max-h-full">
+        <!-- Modal content -->
+        <div class="relative bg-gray-800 rounded-lg shadow-lg text-white">
+            <!-- Modal header -->
+            <div class="flex items-center justify-between p-4 md:p-5 border-b border-gray-700 rounded-t">
+                <h3 class="text-xl font-semibold text-white">
+                    Restricted Access
+                </h3>
+                <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-700 hover:text-white rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                        data-modal-hide="default-modal">
+                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                         viewBox="0 0 14 14">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                    </svg>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <!-- Modal body -->
+            <div class="p-4 md:p-5 space-y-4">
+                <p class="text-base leading-relaxed text-gray-300">
+                    Sorry, this service is only available to users in the UK and Pakistan. Please visit our homepage or
+                    contact support for further information.
+                </p>
+            </div>
+            <!-- Modal footer -->
+            <div class="flex items-center p-4 md:p-5 border-t border-gray-700 rounded-b">
+                <a href="{% url 'index' %}" data-modal-hide="default-modal" type="button"
+                   class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                    Back to Homepage
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript to trigger modal if not UK or Pakistan user -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Check if user is not from the UK or Pakistan (from context variables)
+        const isUkUser = {{ is_uk_user|yesno:"true,false" }};
+        const isPkUser = {{ is_pk_user|yesno:"true,false" }};
+        if (!isUkUser && !isPkUser) {
+            // Remove 'hidden' class to show the modal
+            const modal = document.getElementById('default-modal');
+            modal.classList.remove('hidden');
+
+            // Add classes to properly align the modal for displaying
+            modal.classList.add('flex');
+        }
+    });
+</script>
+</body>
+</html>

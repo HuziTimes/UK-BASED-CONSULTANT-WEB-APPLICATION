@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Successful</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #1c1c1c;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .email-header {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        .email-header h1 {
+            color: #ffffff;
+            font-size: 24px;
+            margin: 0;
+        }
+        .email-body {
+            padding: 20px;
+            background-color: #2b2b2b;
+            border-radius: 8px;
+            color: #ffffff;
+        }
+        .email-body p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #ffffff;
+        }
+        .email-body .highlight {
+            color: #f9a825; /* Accent color for important info */
+            font-weight: bold;
+        }
+        .email-footer {
+            text-align: center;
+            padding-top: 20px;
+        }
+        .email-footer p {
+            font-size: 14px;
+            color: #7f7f7f;
+        }
+        .btn {
+            background-color: #f9a825;
+            color: #000000;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        a {
+            color: #f9a825;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>Welcome to Edu Grow Consulting!</h1>
+        </div>
+        <div class="email-body">
+            <p>Hello <span class="highlight">{{ user_name }}</span>,</p>
+            <p>Thank you for signing up on our platform. Your account has been successfully created and is now pending review by our team.</p>
+            <p>Once our support team reviews and approves your account, we will send you a notification.</p>
+            <p>If you have any questions in the meantime, feel free to <a href="{{ website_url }}">contact us</a>.</p>
+            <p>Thank you for your patience and welcome to our community!</p>
+        </div>
+        <div class="email-footer">
+            <p>&copy; {{ current_year }} Your Company. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

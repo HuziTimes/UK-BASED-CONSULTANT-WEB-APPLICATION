@@ -1,0 +1,91 @@
+{% load static %}
+<!-- Sidebar -->
+<aside class="w-full lg:w-1/4 bg-gray-800 text-gray-100 p-6 border-t lg:border-t-0 lg:border-l border-gray-700">
+
+    <!-- Popular Posts -->
+    <div class="mb-8">
+        <h3 class="text-xl font-semibold mb-4 flex items-center">
+            🔥 <span class="ml-2">Popular Posts</span>
+        </h3>
+        <ul>
+            {% for question in popular_posts %}
+            <li class="mb-4">
+                <a href="{{ question.get_absolute_url }}" class="flex items-start hover:bg-gray-700 p-2 rounded-lg transition duration-200">
+                    <img src="{% if question.user.profile_image %}{{ question.user.profile_image.url }}{% else %}{% static 'images/default_avatar.jpg' %}{% endif %}" alt="{{ question.user.username }}" class="w-12 h-12 rounded-full mr-4 object-cover">
+                    <div>
+                        <p class="text-gray-100 font-medium">{{ question.title }}</p>
+                        <div class="text-sm text-gray-400 mt-1">
+                            <span>{{ question.user.get_full_name }}</span> · <span>{{ question.view_count }} Views</span>
+                        </div>
+                    </div>
+                </a>
+            </li>
+            {% empty %}
+            <li class="text-gray-500">No popular posts available.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Consultation Requests -->
+    <div class="mb-8">
+        <h3 class="text-xl font-semibold mb-4 flex items-center">
+            💬 <span class="ml-2">Consultation Requests</span>
+        </h3>
+        <p class="text-gray-400 mb-4">Need personalized help? Request a consultation with our experts and receive tailored advice for your UK journey.</p>
+        <a href="{% url 'book_consultation' %}" class="block text-center bg-blue-600 text-white py-2 rounded-full hover:bg-blue-700 transition duration-200">Request Consultation</a>
+    </div>
+
+    <!-- Membership and Donations -->
+    <div class="mb-8">
+        <h3 class="text-xl font-semibold mb-4 flex items-center">
+            🙏 <span class="ml-2">Support & Membership</span>
+        </h3>
+        <p class="text-gray-400 mb-4">Support our community and become a member. Even a small contribution helps keep us going and unlocks special features for you.</p>
+        <a href="{% url 'donate' %}" class="block text-center bg-green-600 text-white py-2 rounded-full hover:bg-green-700 transition duration-200">Donate & Become a Member</a>
+    </div>
+
+    <!-- Live Chat -->
+    <div  class="mb-8">
+        <h3 class="text-xl font-semibold mb-4 flex items-center">
+            💬 <span class="ml-2">Live Community Chat</span>
+        </h3>
+        <p class="text-gray-400 mb-4">Join our live chat to connect with other international students, share experiences, and get real-time answers from the community.</p>
+        <a id="live-chat-section" class="block text-center bg-purple-600 text-white py-2 rounded-full hover:bg-purple-700 transition duration-200">Join Live Chat</a>
+    </div>
+
+    <!-- Newsletter Subscription -->
+    <div class="bg-gray-700 p-6 rounded-lg mb-8">
+        <h3 class="text-xl font-semibold mb-4 flex items-center">
+            📬 <span class="ml-2">Subscribe to Our Newsletter</span>
+        </h3>
+        <p class="text-gray-400 mb-4">Stay updated with the latest news, opportunities, and resources for international students in the UK. Subscribe now!</p>
+        <form method="post" action="{% url 'index' %}" class="flex flex-col">
+            {% csrf_token %}
+            <input type="email" name="email" placeholder="Your email" class="mb-2 px-4 py-2 border border-gray-600 bg-gray-600 text-gray-100 rounded-lg focus:outline-none focus:border-blue-500" required>
+            <button type="submit" class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200">Subscribe</button>
+        </form>
+    </div>
+
+
+</aside>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const chatButton = document.querySelector('.tawk-button');
+        const targetSection = document.getElementById('live-chat-section');
+
+        chatButton.addEventListener('click', function () {
+            if (targetSection) {
+                // Toggle the visibility of the target section
+                targetSection.classList.toggle('hidden-section');
+
+                // Optionally scroll into view when making visible
+                if (!targetSection.classList.contains('hidden-section')) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+</script>

@@ -1,0 +1,73 @@
+{% extends 'components/base.html' %}
+
+{% block title %}Payment Failed{% endblock %}
+
+{% block content %}
+<main class="bg-gray-900 text-gray-300 min-h-screen flex flex-col items-center justify-center py-16 px-4">
+
+    <!-- Error Message Section -->
+    <div class="flex flex-col items-center text-center bg-gray-800 max-w-xl w-full p-8 rounded-lg shadow-xl">
+        <svg class="h-16 w-16 text-red-500 mb-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path fill-rule="evenodd" d="M12 2a10 10 0 1110 10 10 10 0 01-10-10zm4.293 7.293a1 1 0 00-1.414 0L12 12.172l-2.879-2.879a1 1 0 10-1.414 1.414L10.586 13.5l-2.879 2.879a1 1 0 001.414 1.414L12 14.828l2.879 2.879a1 1 0 001.414-1.414L13.414 13.5l2.879-2.879a1 1 0 000-1.414z" clip-rule="evenodd"/>
+        </svg>
+        <h1 class="text-4xl font-bold text-white">Payment Unsuccessful</h1>
+        <p class="text-gray-400 mt-4 max-w-lg">
+            We couldn’t process your payment. Please review your details and try again. If the problem persists, our support team is ready to assist.
+        </p>
+    </div>
+
+    <!-- Actionable Steps & Support Options Section -->
+    <div class="flex flex-col lg:flex-row gap-8 max-w-5xl w-full mt-12">
+
+        <!-- Left Column - Suggested Actions -->
+        <div class="bg-gray-800 w-full lg:w-1/2 p-6 rounded-lg shadow-lg space-y-6">
+            <h2 class="text-2xl font-semibold text-white">Steps to Resolve</h2>
+            <p class="text-gray-400">
+                Here are some quick steps you can take to complete your donation successfully:
+            </p>
+            <ul class="text-left text-gray-300 space-y-3 list-disc list-inside">
+                <li>🔄 <span class="font-medium text-white">Try Again:</span> Double-check your payment information and try resubmitting.</li>
+                <li>💳 <span class="font-medium text-white">Alternate Payment Method:</span> Use a different card or payment method.</li>
+                <li>📞 <span class="font-medium text-white">Reach Out to Support:</span> Contact us if you continue to face issues.</li>
+            </ul>
+            <a href="{% url 'donate' %}" class="bg-green-600 text-white py-3 px-6 rounded-lg font-semibold mt-4 inline-block hover:bg-green-700 transition">Retry Payment</a>
+        </div>
+
+        <!-- Right Column - Contact Support -->
+        <div class="bg-gray-800 w-full lg:w-1/2 p-6 rounded-lg shadow-lg space-y-6">
+            <h2 class="text-2xl font-semibold text-white">Need Help?</h2>
+            <p class="text-gray-400">
+                Our team is here to assist you with any issues. Feel free to contact us through the options below.
+            </p>
+            <div class="flex flex-col gap-4 text-left text-gray-300">
+                <div class="flex items-center space-x-3">
+                    <svg class="h-6 w-6 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd" d="M12 2a10 10 0 1110 10 10 10 0 01-10-10zM12 18a6 6 0 100-12 6 6 0 000 12zm0-10a4 4 0 100 8 4 4 0 000-8z" clip-rule="evenodd"/>
+                    </svg>
+                    <a href="mailto:support@example.com" class="text-white font-semibold hover:text-blue-400 transition">Email Us: support@example.com</a>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <svg class="h-6 w-6 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M6.4 5.6a1 1 0 00-1.8.8c1 4.3 4.9 8.2 9.2 9.2a1 1 0 00.8-1.8l-1.8-1a1 1 0 00-1.1.2l-.9.9a6.7 6.7 0 01-4.6-4.6l.9-.9a1 1 0 00.2-1.1l-1-1.8z"/>
+                    </svg>
+                    <a href="tel:+11234567890" class="text-white font-semibold hover:text-blue-400 transition">Call Us: +1 123 456 7890</a>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <svg class="h-6 w-6 text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M4.929 4.929A10 10 0 019.9 3.2a10.05 10.05 0 014.2 0 10 10 0 014.97 1.73l-.83.83a8.1 8.1 0 00-2.82-.99l-.93.94A10.6 10.6 0 009 4.83L7.5 3.34a8.1 8.1 0 00-2.57 1.59l-.94.94c-.14.14-.27.28-.39.42a10 10 0 011.89 1.9L4.93 4.93zM3 12a9 9 0 014.59-7.75l1.28 1.28a7 7 0 107.77 7.77l1.28 1.28A9 9 0 113 12z"/>
+                    </svg>
+                    <a href="#" class="text-white font-semibold hover:text-blue-400 transition">Live Chat Support</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Section - Back to Homepage Button -->
+    <div class="mt-12">
+        <a href="{% url 'index' %}" class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition">
+            Return to Homepage
+        </a>
+    </div>
+
+</main>
+{% endblock %}

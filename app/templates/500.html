@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <title>Server Error - 500</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="{% static 'style.css' %}" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-900 h-screen flex items-center justify-center text-gray-300">
+
+<!-- Background Image -->
+<div class="absolute inset-0 bg-cover bg-center opacity-20" style="background-image: url('{% static 'svgexport-1.svg' %}');"></div>
+
+<!-- Page Content -->
+<div class="relative z-10 text-center flex flex-col items-center max-w-lg p-6 bg-gray-800 bg-opacity-90 rounded-lg shadow-lg space-y-6">
+
+    <!-- Logo -->
+    <a href="{% url 'index' %}" aria-label="Community Logo" class="mb-4">
+        <img src="{% static 'logo.svg' %}" width="48" height="48" alt="Community Logo" class="filter invert">
+    </a>
+
+    <!-- 500 Illustration -->
+    <img src="{% static '500.svg' %}" alt="500 Illustration" class="h-48 w-auto mx-auto mb-4 opacity-80">
+
+    <!-- Heading and Message -->
+    <h1 class="text-3xl md:text-4xl font-bold text-white">500 - Server Error</h1>
+    <p class="text-lg text-gray-400">Oops! Something went wrong on our end. Please try refreshing the page, or come back later.</p>
+
+    <!-- Button -->
+    <a href="{% url 'index' %}" class="inline-flex items-center px-5 py-3 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition">
+        Back to Homepage
+    </a>
+</div>
+
+</body>
+</html>

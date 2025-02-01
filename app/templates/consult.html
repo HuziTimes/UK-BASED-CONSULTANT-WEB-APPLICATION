@@ -1,0 +1,162 @@
+{% extends 'components/base.html' %}
+
+{% block title %}Home - Community{% endblock %}
+
+{% block content %}
+    {% load static %}
+
+    <main class="cxgft">
+
+        <section>
+            <div class="cbv9p c0xm3 cffqt cwd8x">
+                <div class="cxeoc cvf0z">
+
+                    <div class="ctxr2 crdo7 cj9x5 c39hn">
+
+                        <!-- Page content -->
+                        <div class="cqmr5 cqn89 cf8g7 crett">
+                            <div class="cn0gg cxolx">
+
+                                <div class="c84kl clzjs c12xj cw9ka civup cyjnb">
+
+                                    <!-- Upvotes button -->
+                                    <div class="czcmj">
+                                        <button class="c7aqr cfop7 c84kl cyszb ch7x1 clzjs cyv0x cog1w cbsef c2h7h cv8nv cb3vt cjl5d czhaz c19hn ckv00 ca2yl cv0f2 cix92 cas64 c15ll">
+                                            <svg class="cv0nq cwqbk cy4m7" width="11" height="7"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M1.664 6.747.336 5.253 5.5.662l5.164 4.591-1.328 1.494L5.5 3.338z"></path>
+                                            </svg>
+                                            <span class="crs6u ci5c0 cwvxj">1</span>
+                                        </button>
+                                    </div>
+
+                                    <!-- Content -->
+                                    <div>
+
+                                        <article class="cntrh">
+
+                                            <!-- Post header -->
+                                            <header class="c9n6n">
+                                                <h1 class="chc94 chkqi cv5ei cs22w">Book a Consultation</h1>
+                                                <p class="cpb42 c5jcw ciylz">
+                                                    Schedule a personalized one-on-one session with our experts. Our consultation sessions are designed to help international students navigate the challenges of studying in the UK, from academics to settling in comfortably.
+                                                </p>
+                                            </header>
+                                        </article>
+
+
+                                        <!-- Comment form -->
+                                        <form class="chkqi" action="{% url 'book_consultation' %}" method="post">
+                                            {% csrf_token %}
+
+                                            <!-- Title -->
+                                            <div class="c0be6 c894v">
+                                                <label for="consultation-title"
+                                                       class="block text-sm font-medium text-white">
+                                                    Consultation Title
+                                                </label>
+                                                <input type="text" name="title" id="consultation-title"
+                                                       class="c75mk c894v c8ebi"
+                                                       placeholder="Enter a title for your consultation"
+                                                       required>
+                                            </div>
+
+                                            <!-- Description -->
+                                            <div class="c0be6 c894v">
+                                                <label for="consultation-description"
+                                                       class="block text-sm font-medium text-white">
+                                                    Description
+                                                </label>
+                                                <textarea name="description" id="consultation-description" rows="4"
+                                                          class="c75mk c894v c8ebi"
+                                                          placeholder="Provide a brief description of the consultation topic..."
+                                                          required></textarea>
+                                            </div>
+
+                                            <!-- Preferred Date -->
+                                            <div class="c0be6 c894v">
+                                                <label for="consultation-date"
+                                                       class="block text-sm font-medium text-white">
+                                                    Preferred Date
+                                                </label>
+                                                <input type="date" name="preferred_date" id="consultation-date"
+                                                       class="c75mk c894v c8ebi" required>
+                                            </div>
+
+                                            <!-- Preferred Time -->
+                                            <div class="c0be6 c894v">
+                                                <label for="consultation-time"
+                                                       class="block text-sm font-medium text-white">
+                                                    Preferred Time
+                                                </label>
+                                                <input type="time" name="preferred_time" id="consultation-time"
+                                                       class="c75mk c894v c8ebi" required>
+                                            </div>
+
+                                            <!-- Submit Button -->
+                                            <div class="c5lzi">
+                                                <button class="cs3c2 cmoq7 cy2b1 cwams c4pyj" type="submit">
+                                                    Book Consultation
+                                                </button>
+                                            </div>
+                                        </form>
+
+                                        <!-- Comments list -->
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 bg-gray-900">
+                                            <!-- Card 1 -->
+                                            <div class="bg-gray-800 shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                                                <div class="relative">
+                                                    <img class="w-full h-32 object-cover opacity-80"
+                                                         src="{% static 'registration.jpg' %}"
+                                                         alt="Registration">
+
+                                                </div>
+                                                <div class="p-6">
+                                                    <h3 class="text-xl font-semibold text-white mb-2">User
+                                                        Registration</h3>
+                                                    <p class="text-gray-400 mb-4">
+                                                        Sign up by providing personal details and verifying your UK
+                                                        status to gain access to exclusive features.
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <!-- Card 2 -->
+                                            <div class="bg-gray-800 shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+                                                <div class="relative">
+                                                    <img class="w-full h-32 object-cover opacity-80"
+                                                         src="{% static 'membership.jpg' %}"
+                                                         alt="Membership">
+
+                                                </div>
+                                                <div class="p-6">
+                                                    <h3 class="text-xl font-semibold text-white mb-2">Membership</h3>
+                                                    <p class="text-gray-400 mb-4">
+                                                        Become a member by making a small donation and unlock additional
+                                                        features to grow your career and knowledge.
+                                                    </p>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Sidebar -->
+                        {% include 'components/side_bar.html' %}
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+{% endblock %}

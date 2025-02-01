@@ -1,0 +1,365 @@
+{% extends 'components/base.html' %}
+
+{% block title %}User Dashboard{% endblock %}
+
+{% block content %}
+    <main class="flex flex-col min-h-screen bg-gray-900 text-gray-300">
+        <section class="flex-grow">
+            <div class="container mx-auto py-8">
+                <div class="bg-gray-800 rounded-lg shadow-xl p-8">
+                    <div class="md:flex">
+                        <!-- Tabs -->
+                        <ul class="flex flex-col space-y-4 text-sm font-medium text-gray-400 md:mr-4 mb-4 md:mb-0 w-full md:w-1/4">
+                            <li>
+                                <a href="#"
+                                   class="tab-link inline-flex items-center px-4 py-3 text-white bg-blue-600 rounded-lg w-full"
+                                   data-tab-target="profile" aria-current="page">
+                                    <!-- Profile Icon -->
+                                    <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                         viewBox="0 0 20 20">
+                                        <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
+                                    </svg>
+                                    Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                   class="tab-link inline-flex items-center px-4 py-3 rounded-lg hover:text-white bg-gray-800 hover:bg-gray-700 w-full"
+                                   data-tab-target="change-password">
+                                    <!-- Change Password Icon -->
+                                    <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                         viewBox="0 0 20 20">
+                                        <path d="M10 0a5 5 0 0 0-5 5v5H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-1V5a5 5 0 0 0-5-5Zm-3 5a3 3 0 1 1 6 0v5H7V5Z"/>
+                                    </svg>
+                                    Change Password
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                   class="tab-link inline-flex items-center px-4 py-3 rounded-lg hover:text-white bg-gray-800 hover:bg-gray-700 w-full"
+                                   data-tab-target="questions">
+                                    <!-- My Questions Icon -->
+                                    <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                         viewBox="0 0 20 20">
+                                        <path d="M9 0a9 9 0 1 0 9 9A9.01 9.01 0 0 0 9 0Zm0 16a7 7 0 1 1 7-7 7.008 7.008 0 0 1-7 7Z"/>
+                                        <path d="M8 4h2v6H8V4Zm0 8h2v2H8v-2Z"/>
+                                    </svg>
+                                    My Questions
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                   class="tab-link inline-flex items-center px-4 py-3 rounded-lg hover:text-white bg-gray-800 hover:bg-gray-700 w-full"
+                                   data-tab-target="consultations">
+                                    <!-- Consultations Icon -->
+                                    <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                         viewBox="0 0 20 20">
+                                        <path d="M7.824 5.937a1 1 0 0 0 .726-.312 2.042 2.042 0 0 1 2.835-.065 1 1 0 0 0 1.388-1.441 3.994 3.994 0 0 0-5.674.13 1 1 0 0 0 .725 1.688Z"/>
+                                        <path d="M17 7A7 7 0 1 0 3 7a3 3 0 0 0-3 3v2a3 3 0 0 0 3 3h1a1 1 0 0 0 1-1V7a5 5 0 1 1 10 0v7.083A2.92 2.92 0 0 1 12.083 17H12a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v1a2 2 0 0 0 2 2h1a1.993 1.993 0 0 0 1.722-1h.361a4.92 4.92 0 0 0 4.824-4H17a3 3 0 0 0 3-3v-2a3 3 0 0 0-3-3Z"/>
+                                    </svg>
+                                    My Consultations
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#"
+                                   class="tab-link inline-flex items-center px-4 py-3 rounded-lg hover:text-white bg-gray-800 hover:bg-gray-700 w-full"
+                                   data-tab-target="transactions">
+                                    <!-- Transactions Icon -->
+                                    <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                                         viewBox="0 0 20 20">
+                                        <path d="M10 0C4.486 0 0 4.486 0 10s4.486 10 10 10 10-4.486 10-10S15.514 0 10 0zm1 15v-4h3l-4-5-4 5h3v4h2z"/>
+                                    </svg>
+                                    Transactions
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!-- Profile Section -->
+                        <div class="tab-content p-6 bg-gray-800 text-medium text-gray-400 rounded-lg w-full md:w-3/4"
+                             data-tab-content="profile">
+                            <h2 class="text-2xl font-bold text-white mb-6 text-center">My Account</h2>
+                            <form action="{% url 'dashboard' %}" method="POST" class="space-y-6" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <input type="hidden" name="form_type" value="profile_update">
+                                <div class="text-center mb-6">
+                                    <img  src="{{ user.profile_image.url|default:'/media/default_profile.png' }}"
+                                            alt="Current Profile Picture"
+                                            class="w-24 h-24 rounded-full mx-auto mb-4"
+                                    >
+                                    <label for="profile_image" class="block text-gray-300 font-semibold mb-2">Update
+                                        Profile Picture</label>
+                                    <input type="file" id="profile_image" name="profile_image"
+                                           class="w-full p-3 bg-gray-700 text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600">
+                                </div>
+                                <!-- Editable Fields -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+
+                                    <div>
+                                        <label for="first_name" class="block text-gray-300 font-semibold mb-2">First
+                                            Name</label>
+                                        <input type="text" id="first_name" name="first_name" value="{{ first_name }}"
+                                               class="w-full p-3 bg-gray-700 text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                                               placeholder="Enter your first name">
+                                    </div>
+                                    <div>
+                                        <label for="last_name" class="block text-gray-300 font-semibold mb-2">Last
+                                            Name</label>
+                                        <input type="text" id="last_name" name="last_name" value="{{ last_name }}"
+                                               class="w-full p-3 bg-gray-700 text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                                               placeholder="Enter your last name">
+                                    </div>
+                                </div>
+                                <!-- Phone and Email Fields -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                    <div>
+                                        <label for="phone_number" class="block text-gray-300 font-semibold mb-2">Phone
+                                            Number</label>
+                                        <input type="text" id="phone_number" name="phone_number"
+                                               value="{{ phone_number }}"
+                                               class="w-full p-3 bg-gray-700 text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                                               placeholder="Enter your phone number">
+                                    </div>
+                                    <div>
+                                        <label for="email" class="block text-gray-300 font-semibold mb-2">Email</label>
+                                        <input type="email" id="email" name="email" value="{{ email }}" readonly
+                                               class="w-full p-3 bg-gray-700 text-gray-400 rounded-lg cursor-not-allowed"
+                                               placeholder="Your email">
+                                    </div>
+                                </div>
+                                <!-- University and Course Fields -->
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                    <div>
+                                        <label for="university" class="block text-gray-300 font-semibold mb-2">University</label>
+                                        <input type="text" id="university" name="university" value="{{ university }}"
+                                               readonly
+                                               class="w-full p-3 bg-gray-700 text-gray-400 rounded-lg cursor-not-allowed"
+                                               placeholder="Your university">
+                                    </div>
+                                    <div>
+                                        <label for="course"
+                                               class="block text-gray-300 font-semibold mb-2">Course</label>
+                                        <input type="text" id="course" name="course" value="{{ course }}" readonly
+                                               class="w-full p-3 bg-gray-700 text-gray-400 rounded-lg cursor-not-allowed"
+                                               placeholder="Your course">
+                                    </div>
+                                </div>
+                                <!-- Submit Button -->
+                                <div class="text-center mt-8">
+                                    <button type="submit"
+                                            class="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500 transition">
+                                        Save Changes
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Change Password Section -->
+                        <div class="tab-content hidden p-6 bg-gray-800 text-medium text-gray-400 rounded-lg w-full md:w-3/4"
+                             data-tab-content="change-password">
+                            <h2 class="text-2xl font-bold text-white mb-6 text-center">Change Password</h2>
+                            <form action="{% url 'dashboard' %}" method="POST" class="space-y-6">
+                                {% csrf_token %}
+                                <input type="hidden" name="form_type" value="change_password">
+                                <div class="grid grid-cols-1 gap-6">
+                                    <div>
+                                        <label for="current_password" class="block text-gray-300 font-semibold mb-2">Current
+                                            Password</label>
+                                        <input type="password" id="current_password" name="current_password" required
+                                               class="w-full p-3 bg-gray-700 text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                                               placeholder="Enter your current password">
+                                    </div>
+                                    <div>
+                                        <label for="new_password" class="block text-gray-300 font-semibold mb-2">New
+                                            Password</label>
+                                        <input type="password" id="new_password" name="new_password" required
+                                               class="w-full p-3 bg-gray-700 text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                                               placeholder="Enter your new password">
+                                    </div>
+                                    <div>
+                                        <label for="confirm_new_password"
+                                               class="block text-gray-300 font-semibold mb-2">Confirm New
+                                            Password</label>
+                                        <input type="password" id="confirm_new_password" name="confirm_new_password"
+                                               required
+                                               class="w-full p-3 bg-gray-700 text-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600"
+                                               placeholder="Confirm your new password">
+                                    </div>
+                                </div>
+                                <div class="text-center mt-8">
+                                    <button type="submit"
+                                            class="w-full py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-500 transition">
+                                        Update Password
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- My Questions Section -->
+                        <div class="tab-content hidden p-6 bg-gray-800 text-medium text-gray-400 rounded-lg w-full md:w-3/4"
+                             data-tab-content="questions">
+                            <h2 class="text-2xl font-bold text-white mb-6 text-center">My Questions</h2>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full bg-gray-800 rounded-lg shadow-md">
+                                    <thead class="bg-gray-700">
+                                    <tr class="text-left text-gray-300 uppercase text-xs font-semibold tracking-wide">
+                                        <th class="py-4 px-6">Title</th>
+                                        <th class="py-4 px-6">Status</th>
+                                        <th class="py-4 px-6">Views</th>
+                                        <th class="py-4 px-6">Date</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="bg-gray-800 divide-y divide-gray-700">
+                                    {% for question in page_obj %}
+                                        <tr class="hover:bg-gray-700 transition duration-200">
+                                            <td class="py-4 px-6">
+                                                <a href="#"
+                                                   class="text-blue-400 hover:underline">{{ question.title }}</a>
+                                            </td>
+                                            <td class="py-4 px-6">
+                                                {% if question.answer %}
+                                                    <span class="px-2 py-1 text-xs font-semibold bg-green-600 text-white rounded-full">Answered</span>
+                                                {% else %}
+                                                    <span class="px-2 py-1 text-xs font-semibold bg-red-600 text-white rounded-full">Unanswered</span>
+                                                {% endif %}
+                                            </td>
+                                            <td class="py-4 px-6">{{ question.view_count }}</td>
+                                            <td class="py-4 px-6">{{ question.created_at|date:"M d, Y" }}</td>
+                                        </tr>
+                                    {% empty %}
+                                        <tr>
+                                            <td colspan="4" class="py-4 px-6 text-center text-gray-400">No questions
+                                                found.
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- My Consultations Section -->
+                        <div class="tab-content hidden p-6 bg-gray-800 text-medium text-gray-400 rounded-lg w-full md:w-3/4"
+                             data-tab-content="consultations">
+                            <h2 class="text-2xl font-bold text-white mb-6 text-center">My Consultations</h2>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full bg-gray-800 rounded-lg shadow-md">
+                                    <thead class="bg-gray-700">
+                                    <tr class="text-left text-gray-300 uppercase text-xs font-semibold tracking-wide">
+                                        <th class="py-4 px-6">Title</th>
+                                        <th class="py-4 px-6">Date</th>
+                                        <th class="py-4 px-6">Time</th>
+                                        <th class="py-4 px-6">Status</th>
+                                        <th class="py-4 px-6">Created At</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="bg-gray-800 divide-y divide-gray-700">
+                                    {% for consult in consult_page_obj %}
+                                        <tr class="hover:bg-gray-700 transition duration-200">
+                                            <td class="py-4 px-6">{{ consult.title }}</td>
+                                            <td class="py-4 px-6">{{ consult.date|date:"M d, Y" }}</td>
+                                            <td class="py-4 px-6">{{ consult.time|time:"H:i" }}</td>
+                                            <td class="py-4 px-6">
+                                                {% if consult.status == 'Completed' %}
+                                                    <span class="px-2 py-1 text-xs font-semibold bg-green-600 text-white rounded-full">{{ consult.status }}</span>
+                                                {% elif consult.status == 'Cancelled' %}
+                                                    <span class="px-2 py-1 text-xs font-semibold bg-red-600 text-white rounded-full">{{ consult.status }}</span>
+                                                {% else %}
+                                                    <span class="px-2 py-1 text-xs font-semibold bg-yellow-600 text-white rounded-full">{{ consult.status }}</span>
+                                                {% endif %}
+                                            </td>
+                                            <td class="py-4 px-6">{{ consult.created_at|date:"M d, Y" }}</td>
+                                        </tr>
+                                    {% empty %}
+                                        <tr>
+                                            <td colspan="5" class="py-4 px-6 text-center text-gray-400">No consultations
+                                                found.
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Transactions Section -->
+                        <div class="tab-content hidden p-6 bg-gray-800 text-medium text-gray-400 rounded-lg w-full md:w-3/4"
+                             data-tab-content="transactions">
+                            <h2 class="text-2xl font-bold text-white mb-6 text-center">Your Transactions</h2>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full bg-gray-800 rounded-lg shadow-md">
+                                    <thead class="bg-gray-700">
+                                    <tr class="text-left text-gray-300 uppercase text-xs font-semibold tracking-wide">
+                                        <th class="py-4 px-6">Transaction ID</th>
+                                        <th class="py-4 px-6">Amount</th>
+                                        <th class="py-4 px-6">Currency</th>
+                                        <th class="py-4 px-6">Status</th>
+                                        <th class="py-4 px-6">Date</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="bg-gray-800 divide-y divide-gray-700">
+                                    {% for transaction in transaction_page_obj %}
+                                        <tr class="hover:bg-gray-700 transition duration-200">
+                                            <td class="py-4 px-6">{{ transaction.transaction_id }}</td>
+                                            <td class="py-4 px-6">${{ transaction.amount_total }}</td>
+                                            <td class="py-4 px-6">{{ transaction.currency }}</td>
+                                            <td class="py-4 px-6">
+                                                {% if transaction.payment_status == 'Completed' %}
+                                                    <span class="px-2 py-1 text-xs font-semibold bg-green-600 text-white rounded-full">{{ transaction.payment_status }}</span>
+                                                {% elif transaction.payment_status == 'Pending' %}
+                                                    <span class="px-2 py-1 text-xs font-semibold bg-yellow-600 text-white rounded-full">{{ transaction.payment_status }}</span>
+                                                {% else %}
+                                                    <span class="px-2 py-1 text-xs font-semibold bg-red-600 text-white rounded-full">{{ transaction.payment_status }}</span>
+                                                {% endif %}
+                                            </td>
+                                            <td class="py-4 px-6">{{ transaction.created_at|date:"M d, Y H:i" }}</td>
+                                        </tr>
+                                    {% empty %}
+                                        <tr>
+                                            <td colspan="5" class="py-4 px-6 text-center text-gray-400">No transactions
+                                                found.
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- JavaScript for Tab Functionality -->
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const tabLinks = document.querySelectorAll('.tab-link');
+                                const tabContents = document.querySelectorAll('.tab-content');
+
+                                tabLinks.forEach(function (link) {
+                                    link.addEventListener('click', function (e) {
+                                        e.preventDefault();
+                                        const target = link.getAttribute('data-tab-target');
+
+                                        // Remove active class from all tabs
+                                        tabLinks.forEach(function (link) {
+                                            link.classList.remove('text-white', 'bg-blue-600');
+                                            link.classList.add('text-gray-400', 'hover:text-white', 'bg-gray-800', 'hover:bg-gray-700');
+                                        });
+
+                                        // Add active class to the clicked tab
+                                        link.classList.add('text-white', 'bg-blue-600');
+                                        link.classList.remove('text-gray-400', 'hover:text-white', 'bg-gray-800', 'hover:bg-gray-700');
+
+                                        // Hide all content
+                                        tabContents.forEach(function (content) {
+                                            content.classList.add('hidden');
+                                        });
+
+                                        // Show target content
+                                        document.querySelector(`.tab-content[data-tab-content="${target}"]`).classList.remove('hidden');
+                                    });
+                                });
+                            });
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+{% endblock %}

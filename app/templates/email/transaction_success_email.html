@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Confirmation</title>
+    <style>
+        body {
+            background-color: #2c2c2c; /* Dark background color */
+            color: #f5f5f5; /* Light text color for contrast */
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        .container {
+            background-color: #333333; /* Slightly lighter dark background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #ffffff; /* White text for headings */
+        }
+        p, ul {
+            color: #f5f5f5; /* Light gray for body text */
+        }
+        a {
+            color: #1e90ff; /* Bright blue links */
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #1e90ff; /* Button color */
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #cccccc; /* Lighter gray for the footer text */
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        strong {
+            color: #ffffff; /* White for bold text */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Payment Confirmation</h1>
+
+        <p>Dear {{ customer_name }},</p>
+
+        <p>Thank you for your payment! Below are the details of your transaction:</p>
+
+        <ul>
+            <li><strong>Transaction ID:</strong> {{ transaction_id }}</li>
+            <li><strong>Amount:</strong> {{ amount_total }} {{ currency }}</li>
+            <li><strong>Payment Status:</strong> {{ payment_status }}</li>
+        </ul>
+
+        <p>If you have any questions, feel free to <a href="mailto:info@edugrowconsulting.co.uk">contact us</a>.</p>
+
+        <p>Best regards,<br>Your Company Name</p>
+
+        <div class="footer">
+            &copy; {{ current_year }} All rights reserved.
+        </div>
+    </div>
+</body>
+</html>

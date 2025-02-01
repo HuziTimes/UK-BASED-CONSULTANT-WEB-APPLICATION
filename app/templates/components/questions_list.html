@@ -1,0 +1,55 @@
+{% load static %}
+<div class="c7z86 clzjs ciylz c84kl">
+    {% for question in questions %}
+        <div class="bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+            <!-- Question Header -->
+            <div class="flex items-center justify-between mb-4">
+                <!-- User Info -->
+                <div class="flex items-center">
+                    <img src="{% if question.user.profile_image %}{{ question.user.profile_image.url }}{% else %}{% static 'images/default_avatar.jpg' %}{% endif %}"
+                         alt="{{ question.user.get_full_name }}"
+                         class="w-12 h-12 rounded-full object-cover mr-4">
+                    <div>
+                        <a href="{% url 'detail' question.id %}"
+                           class="text-xl font-semibold hover:underline text-white">
+                            {{ question.title }}
+                        </a>
+                        <p class="text-gray-400 text-sm">
+                            By <span class="font-medium">{{ question.user.get_full_name }}</span>
+                            on {{ question.created_at|date:"d M Y" }}
+                        </p>
+                    </div>
+                </div>
+                <!-- View Count -->
+                <div class="flex items-center bg-gray-700 text-gray-200 px-3 py-1 rounded-md">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                    </svg>
+                    <span>{{ question.view_count }}</span>
+                </div>
+            </div>
+
+            <!-- Question Message -->
+            <p class="text-gray-300 mb-4">
+                {{ question.message|truncatewords:30 }}
+            </p>
+
+            <!-- Footer -->
+            <div class="flex items-center justify-between">
+                <!-- Read More -->
+                <div class="flex items-center gap-2">
+                    <a href="{% url 'detail' question.id %}"
+                       class="text-blue-500 hover:underline"
+                       style="color: rgb(99 102 241 / var(--tw-bg-opacity));">Read More</a>
+                    <span class="text-gray-500">·</span>
+                    <span class="text-gray-500">{{ question.view_count }} Views</span>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p class="text-gray-500">No discussions available at the moment.</p>
+    {% endfor %}
+</div>

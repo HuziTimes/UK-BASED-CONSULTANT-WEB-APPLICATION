@@ -1,0 +1,162 @@
+{% extends 'components/base.html' %}
+
+{% block title %}Support Our Mission - EDU Grow Consultant{% endblock %}
+
+{% block content %}
+    {% load static %}
+
+    <main class="bg-gray-900 text-gray-300 min-h-screen py-16">
+
+        <section>
+            <div class="container mx-auto px-4 flex flex-wrap lg:flex-nowrap space-y-8 lg:space-y-0 lg:space-x-8">
+
+                <!-- Main Content - Donation Form -->
+                <div class="w-full lg:w-2/3 bg-gray-800 rounded-lg p-8 shadow-lg">
+                    <div class="text-center mb-8">
+                        <h1 class="cv8nv crm28 cdp3t cm97t c7ur1 cv5ei cjniy clrry chc94">Support Our Mission</h1>
+
+                        <p class="text-lg text-gray-400">
+                            Your support enables us to provide valuable resources for international students. Every
+                            donation counts and helps us make a difference. Join us in empowering students to achieve
+                            their dreams.
+                        </p>
+                    </div>
+
+                    <form action="{% url 'donate' %}" method="post" class="space-y-6">
+                        {% csrf_token %}
+
+                        <!-- Donation Amount Selection -->
+                        <div>
+                            <h2 class="text-2xl font-semibold text-white mb-4">Choose an Amount</h2>
+                            <div class="flex gap-4 mb-4">
+                                <button type="button" onclick="setDonationAmount(10)"
+                                        class="bg-gray-700 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg focus:ring-4 focus:ring-blue-500 transition">
+                                    $10
+                                </button>
+                                <button type="button" onclick="setDonationAmount(20)"
+                                        class="bg-gray-700 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg focus:ring-4 focus:ring-blue-500 transition">
+                                    $20
+                                </button>
+                                <button type="button" onclick="setDonationAmount(50)"
+                                        class="bg-gray-700 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg focus:ring-4 focus:ring-blue-500 transition">
+                                    $50
+                                </button>
+                                <button type="button" onclick="setDonationAmount(100)"
+                                        class="bg-gray-700 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg focus:ring-4 focus:ring-blue-500 transition">
+                                    $100
+                                </button>
+                            </div>
+                            <input type="number" name="amount" id="donation-amount"
+                                   class="w-full bg-gray-700 border border-gray-600 text-gray-100 rounded-lg p-3 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
+                                   placeholder="Enter a custom amount" min="1" required>
+                        </div>
+
+                        <!-- Donor Information -->
+                        <div>
+                            <h2 class="text-2xl font-semibold text-white mb-4">Your Information</h2>
+                            <div class="mb-4">
+                                <label for="name" class="block text-sm font-medium text-gray-300 mb-1">Name</label>
+                                <input type="text" name="name" id="name"
+                                       class="w-full bg-gray-700 border border-gray-600 text-gray-100 rounded-lg p-3 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
+                                       placeholder="Your full name" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="email" class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                                <input type="email" name="email" id="email"
+                                       class="w-full bg-gray-700 border border-gray-600 text-gray-100 rounded-lg p-3 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
+                                       placeholder="Your email address" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="block text-sm font-medium text-gray-300 mb-1">Message
+                                    (optional)</label>
+                                <textarea name="message" id="message" rows="3"
+                                          class="w-full bg-gray-700 border border-gray-600 text-gray-100 rounded-lg p-3 focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400"
+                                          placeholder="Add a message or dedication"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div>
+                            <button type="submit"
+                                    class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-500 transition">
+                                Donate Now
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="w-full lg:w-1/3 space-y-6">
+
+                    <!-- Consultation Information Section -->
+                    <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                        <h3 class="text-xl font-semibold text-white mb-4">One-on-One Consultations</h3>
+                        <p class="text-gray-400 mb-2">Need personalized guidance on your journey in the UK? Our
+                            moderators are here to help with one-on-one consultations tailored to your needs.</p>
+                        <a href="{% url 'book_consultation' %}"
+                           class="block text-center bg-blue-600 text-white py-2 rounded-full hover:bg-blue-700 transition duration-200">Book
+                            a Consultation</a>
+                    </div>
+
+                    <!-- Membership Benefits Section -->
+                    <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                        <h3 class="text-xl font-semibold text-white mb-4">Membership Benefits</h3>
+                        <p class="text-gray-400 mb-2">Become a member to unlock exclusive benefits like direct
+                            consultations, priority responses, and more. Your contributions help us serve more students
+                            effectively.</p>
+                        <a href="{% url 'signup' %}"
+                           class="block text-center bg-green-600 text-white py-2 rounded-full hover:bg-green-700 transition duration-200">Join
+                            as a Member</a>
+                    </div>
+
+                    <!-- Frequently Asked Questions Section -->
+                    <div class="bg-gray-800 rounded-lg p-6 shadow-lg">
+                        <h3 class="text-xl font-semibold text-white mb-4">Frequently Asked Questions</h3>
+                        <ul class="space-y-2">
+                            {% for faq in faqs %}
+                                <li class="text-gray-400">
+                                    ❓ <span class="text-white font-medium">{{ faq.question }}</span><br>
+                                    <span class="text-gray-400 text-sm">{{ faq.answer }}</span>
+                                </li>
+                            {% empty %}
+                                <li class="text-gray-500">No FAQs available at the moment. Check back later for more
+                                    helpful answers.
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <!-- Subscribe to Newsletter Section -->
+                    <div class="bg-gray-700 p-6 rounded-lg">
+                        <h3 class="text-xl font-semibold mb-4 flex items-center">
+                            📬 <span class="ml-2">Subscribe to Our Newsletter</span>
+                        </h3>
+                        <p class="text-gray-400 mb-4">Stay updated with the latest information, opportunities, and
+                            resources for international students in the UK.</p>
+                        <form method="post" action="{% url 'index' %}" class="flex flex-col">
+                            {% csrf_token %}
+                            <input type="email" name="email" placeholder="Your email"
+                                   class="mb-2 px-4 py-2 border border-gray-600 bg-gray-600 text-gray-100 rounded-lg focus:outline-none focus:border-blue-500"
+                                   required>
+                            <button type="submit"
+                                    class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200">
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+
+                </aside>
+
+
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Set the donation amount from the preset buttons
+        function setDonationAmount(amount) {
+            document.getElementById("donation-amount").value = amount;
+        }
+    </script>
+{% endblock %}

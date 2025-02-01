@@ -1,0 +1,88 @@
+{% extends 'components/base.html' %}
+
+{% block title %}Payment Successful{% endblock %}
+
+{% block content %}
+    <main class="bg-gray-900 text-gray-300 min-h-screen flex flex-col items-center justify-center py-16 px-4">
+
+        <!-- Success Message Section -->
+        <div class="flex flex-col items-center text-center bg-gray-800 max-w-xl w-full p-8 rounded-lg shadow-xl mb-8">
+            <svg class="h-14 w-14 text-green-500 mb-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                 fill="currentColor">
+                <path fill-rule="evenodd"
+                      d="M12 2a10 10 0 11-10 10 10 10 0 0110-10zm3.707 8.707a1 1 0 00-1.414-1.414L11 12.586 9.707 11.293a1 1 0 10-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"/>
+            </svg>
+            <h1 class="text-3xl font-extrabold text-white">Thank You for Your Support!</h1>
+
+            <p class="text-gray-400 max-w-lg mt-4">
+                Your generous donation of <span class="text-white font-bold">${{ donation_amount }}</span> has been successfully processed.
+                A confirmation has been sent to <span class="text-white font-bold">{{ email }}</span>. Together, we are empowering education and creating opportunities for those who need them the most. We couldn't do it without you!
+            </p>
+        </div>
+
+        <!-- Main Content with Two Columns -->
+        <div class="flex flex-col lg:flex-row gap-8 max-w-5xl w-full">
+
+            <!-- Left Column - Donation Receipt -->
+            <div class="bg-gray-800 w-full lg:w-1/2 p-6 rounded-lg shadow-lg space-y-6">
+                <h2 class="text-xl font-bold text-white">Donation Receipt</h2>
+                <div class="text-sm text-gray-300 space-y-3">
+                    <div class="flex justify-between">
+                        <span class="font-medium">Order Number:</span>
+                        <span>{{ order_number }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="font-medium">Date:</span>
+                        <span>{{ date }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="font-medium">Payment Method:</span>
+                        <span>Card</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="font-medium">Donation Amount:</span>
+                        <span>${{ donation_amount }}</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="font-medium">Email:</span>
+                        <span>{{ email }}</span>
+                    </div>
+                    {% if phone %}
+                        <div class="flex justify-between">
+                            <span class="font-medium">Phone:</span>
+                            <span>{{ phone }}</span>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Right Column with Stacked Sections -->
+            <div class="flex flex-col gap-6 w-full lg:w-1/2">
+
+                <!-- Impact Section -->
+                <div class="bg-gray-800 p-6 rounded-lg shadow-lg space-y-4 text-center">
+                    <h3 class="text-xl font-semibold text-white">The Impact of Your Donation</h3>
+                    <p class="text-gray-400">
+                        Your contribution has a real and lasting impact. Here’s how your support helps make a difference:
+                    </p>
+                    <ul class="text-left text-gray-300 space-y-2 list-disc list-inside">
+                        <li>📚 <span class="font-medium text-white">Library Expansion:</span> Your support helps us provide books and resources to underserved communities, enriching their educational experience.</li>
+                        <li>💻 <span class="font-medium text-white">Tech Workshops:</span> Empowering young people with tech skills to prepare them for future careers in a digital world.</li>
+                        <li>🎓 <span class="font-medium text-white">Scholarship Fund:</span> Offering scholarships to talented students who need financial assistance to continue their studies.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- View Account Button at Bottom -->
+        <div class="mt-12">
+            <a href="{% url 'dashboard' %}"
+               class="bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-700 transition">
+                View in My Account
+            </a>
+        </div>
+
+    </main>
+{% endblock %}

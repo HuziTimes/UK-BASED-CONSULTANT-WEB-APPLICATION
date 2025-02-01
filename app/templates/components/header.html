@@ -1,0 +1,115 @@
+{% load static %}
+
+<nav class="bg-gray-900 border-b border-gray-700">
+    <div class="max-w-[1550px] mx-auto px-4">
+        <div class="flex justify-between items-center h-16">
+            <!-- Logo and Brand -->
+            <div class="flex items-center">
+                <a href="{% url 'index' %}" class="flex items-center">
+                    <img src="{% static 'logo.svg' %}" height="50" width="50" alt="Prixite Logo"
+                         class="transition duration-300 transform hover:scale-110">
+                    <span class="ml-3 text-2xl font-extrabold text-gradient bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 hover:text-indigo-400 transition duration-500 ease-in-out">
+                        EduGrow Consulting
+                    </span>
+                </a>
+            </div>
+
+            <!-- Navigation Links -->
+            <div class="hidden md:flex space-x-8">
+                <a href="{% url 'index' %}"
+                   class="text-gray-200 hover:text-white {% if request.path == '/' %}font-bold{% endif %}">Home</a>
+                <a href="{% url 'ask' %}"
+                   class="text-gray-200 hover:text-white {% if request.path == '/ask/' %}font-bold{% endif %}">Ask</a>
+                <a href="{% url 'book_consultation' %}"
+                   class="text-gray-200 hover:text-white {% if request.path == '/book-consultation/' %}font-bold{% endif %}">Consultations</a>
+                <a href="{% url 'donate' %}"
+                   class="text-gray-200 hover:text-white {% if request.path == '/donate/' %}font-bold{% endif %}">Donation</a>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center space-x-4">
+                {% if not request.user.is_authenticated %}
+                    <!-- Get Started Button (desktop) -->
+                    <a href="{% url 'login' %}"
+                       class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl hidden md:block">
+                        Get Started
+                    </a>
+                {% else %}
+                    <!-- User Dropdown (desktop) -->
+                    <div class="relative">
+                        <button type="button" class="flex items-center focus:outline-none" onclick="toggleUserMenu()">
+                            <img class="h-8 w-8 rounded-full" src="{% if user.profile_image %}{{ user.profile_image.url }}{% else %}{% static 'default-profile.jpg' %}{% endif %}"
+                                 alt="User avatar">
+                        </button>
+                        <!-- Dropdown Menu -->
+                        <div id="user-dropdown"
+                             class="hidden absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg overflow-hidden z-20">
+                            <div class="py-2">
+                                <a href="{% url 'dashboard' %}" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Dashboard</a>
+                                <a href="{% url 'logout' %}" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Sign Out</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button type="button" class="text-gray-200 hover:text-gray-400 focus:outline-none"
+                            onclick="toggleMobileMenu()">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden">
+        <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <a href="{% url 'index' %}"
+               class="block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:bg-gray-700">Home</a>
+            <a href="{% url 'ask' %}"
+               class="block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:bg-gray-700">Ask</a>
+            <a href="{% url 'book_consultation' %}"
+               class="block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:bg-gray-700">Consultations</a>
+            <a href="{% url 'donate' %}"
+               class="block px-3 py-2 rounded-md text-base font-medium text-gray-200 hover:bg-gray-700">Donation</a>
+
+            {% if not request.user.is_authenticated %}
+                <!-- Get Started Button (mobile) -->
+                <a href="{% url 'login' %}"
+                   class="block px-3 py-2 mt-2 rounded-md text-base font-medium text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 hover:scale-105">
+                    Get Started
+                </a>
+            {% endif %}
+        </div>
+
+        <!-- Mobile Search Bar -->
+        <div class="px-4 py-3 border-t border-gray-700">
+            <div class="relative">
+                <input type="text" id="mobile-search-navbar"
+                       class="w-full pl-10 pr-4 py-2 rounded-full bg-gray-800 text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       placeholder="Search...">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M21 21l-4.35-4.35M15.65 15.65A7.5 7.5 0 1015.65 6.65a7.5 7.5 0 000 9z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    function toggleMobileMenu() {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+    }
+
+    function toggleUserMenu() {
+        document.getElementById('user-dropdown').classList.toggle('hidden');
+    }
+</script>

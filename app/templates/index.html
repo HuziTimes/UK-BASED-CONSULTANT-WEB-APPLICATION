@@ -1,0 +1,130 @@
+{% extends 'components/base.html' %}
+
+{% block title %}Home - EDU Grow Consultant{% endblock %}
+{% load static %}
+{% load add_bootstrap_class %}
+{% block content %}
+    <main class="cxgft">
+        <!-- Hero Section -->
+        <section class="c4xpn ccmpi">
+            <div class="container mx-auto px-4">
+
+                <!-- Background and Illustration -->
+                <div class="c1or4 cx5as cgyqu ct8g2 c9epx cun4m cfj2j" aria-hidden="true"></div>
+                <div class="c1or4 cbm4u cv89m c9epx cfj2j" aria-hidden="true">
+                    <img src="{% static 'svgexport-1.svg' %}" class="cj6mp" width="1905" height="622" alt="Hero Illustration">
+                </div>
+
+                <!-- Hero Content -->
+                <div class="c0xm3 cwd8x cbv9p cffqt">
+                    <div class="cb1zj cvf0z cxeoc cowi1">
+                        <div class="cqsqo cysk4 cjz4t ca2yl ccmpi cq6a3 clzjs cbv9p c84kl">
+                            <div class="cmyaq">
+                                <!-- Title and Description -->
+                                <div class="cbbfb">
+                                    <h1 class="cv8nv crm28 cdp3t cm97t c7ur1 cv5ei cjniy clrry chc94">Welcome to EDUGrow Consultant</h1>
+                                    <p class="cpb42 c5jcw ciylz">
+                                        Your trusted community for international students in the UK. Get advice, ask questions, and book consultations with our experienced moderators. We're here to help you grow and succeed in your UK educational journey.
+                                    </p>
+                                </div>
+
+                                <!-- Logos -->
+                                <div class="cxnsa cyv0x ca2yl cb2wz ctxr2">
+                                    <div class="cb3mh chkqi">
+                                        <div class="c132b cc30m ctkuh c8dwh">Empowering students from diverse backgrounds</div>
+                                    </div>
+                                </div>
+
+                                <!-- Hero Illustration -->
+                                <div class="cd34m c5x0v cergj cqsqo c48pc c21i1 cg2hf c42cl cbv9p cyf2o">
+                                    <img src="{% static 'hero-image.png' %}" class="cqsqo cbv9p" width="332" height="298" alt="Hero Illustration">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Content Section -->
+        <section>
+            <div class="c0xm3 cwd8x cbv9p cffqt">
+                <div class="c39hn crdo7 cj9x5 ctxr2">
+                    <!-- Main Content -->
+                    <div class="crett cf8g7 cqmr5 cqn89">
+                        <div class="cadhr cn0gg">
+                            <!-- Content Header -->
+                            <div class="cvkh0 ci034 cntrh clrry">
+                                <div class="cphtx cysk4 cyv0x ca2yl ctxr2">
+                                    <!-- Create Post Button -->
+                                    <div class="ca9xt cb3mh ci2rb chkqi">
+                                        <a href="{% url 'ask' %}" class="w-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold py-3 px-6 rounded-full shadow-lg transform transition duration-300 hover:scale-105 hover:shadow-xl">Ask a Question</a>
+                                    </div>
+                                    <!-- Filters -->
+                                    <ul class="cwqbk ci5c0 cb2wz ctkuh ct3ph cvktr cxgft">
+                                        <li class="czfkt ckxav">
+                                            <a class="cwvxj cix92 cas64 cv0f2 ccmpi" href="#0">
+                                                Popular
+                                            </a>
+                                        </li>
+                                        <!-- Add additional filter options here if necessary -->
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Posts -->
+                            <div id="questions-list" class="cjmlf">
+                                {% include 'components/questions_list.html' with questions=questions %}
+                            </div>
+
+                            <!-- Show More -->
+                            {% if show_more %}
+                                <div class="c5lzi">
+                                    <button id="show-more" class="c15ll cb3vt cv8nv cjl5d c2h7h czhaz cwvxj cy2b1 cs3c2 cbsef cobpv">
+                                        Show More <span class="ctuiw c77ks">-&gt;</span>
+                                    </button>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    {% include 'components/side_bar.html' %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- JavaScript to handle the "Show More" functionality -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let page = 2; // Start with the second page because the first 10 questions are already loaded
+
+            const showMoreButton = document.getElementById("show-more");
+            if (showMoreButton) {
+                showMoreButton.addEventListener("click", function() {
+                    fetch(`?page=${page}`, {
+                        headers: {
+                            "X-Requested-With": "XMLHttpRequest"
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.questions_html) {
+                            const questionsList = document.getElementById("questions-list");
+                            questionsList.innerHTML += data.questions_html;
+
+                            // Increment the page number for the next click
+                            page += 1;
+
+                            // Hide the "Show More" button if no more pages are left
+                            if (!data.has_next) {
+                                showMoreButton.style.display = 'none';
+                            }
+                        }
+                    })
+                    .catch(error => console.error("Error loading more questions:", error));
+                });
+            }
+        });
+    </script>
+{% endblock %}
